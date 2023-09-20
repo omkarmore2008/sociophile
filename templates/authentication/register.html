@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block icon %}
+<link rel="icon" type="icon/x-icon" href="{% static 'authentication/register-icon.png' %}">
+{% endblock icon %}
+
+{% block title%}
+Registration form
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'authentication/register.css' %}">
+{% endblock %}
+
+{%block content%}
+<div class="form-card w-50">
+    <div class="card  m-auto mt-5 p-3 ">
+        <p class="h3 text-center mb-2 text-success">Sociophile 🌎</p>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-floating mb-3 mt-3">
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name"
+                    required>
+                <label for="first_name">First name*</label>
+            </div>
+
+
+            <div class="form-floating mb-3 mt-3">
+                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name"
+                    required>
+                <label for="last_name">Last name*</label>
+            </div>
+
+            <div class="form-floating mb-3 mt-3">
+                <input type="text" class="form-control" id="mobile_number" name="mobile_number"
+                    placeholder="Enter mobile number" onchange="validMobile()" required>
+                <label for="mobile_number">Mobile number*</label>
+            </div>
+
+            <div class="form-floating mb-3 mt-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Id" required>
+                <label for="email">Email id*</label>
+            </div>
+            {% if existing_user%}
+            <span class="error">Email id is registred!</span>
+            {% endif %}
+            <div class="form-floating mb-3 mt-3">
+                <input type="text" class="form-control" id="bio" name="bio" placeholder="Bio">
+                <label for="bio">Bio</label>
+            </div>
+
+            <div class="form-floating mb-3 mt-3">
+                <input type="text" class="form-control" id="location" name="location" placeholder="Location">
+                <label for="bio">Location</label>
+            </div>
+
+            <div class="form-floating mb-3 mt-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"
+                    required>
+                <label for="password">Password*</label>
+            </div>
+
+            <div class="form-floating mb-3 mt-3">
+                <input type="password" class="form-control" id="check_password" name="check_password"
+                    placeholder="Confirm password" required>
+                <label for="check_password">Confirm password*</label>
+            </div>
+
+            {% if error %}
+            <span class="error">Password must be same!</span>
+            {% endif %}
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success mb-3  mt-3" id="registerButton">
+                    <span class="badge"><img src="{% static 'authentication/register-icon.png' %}" height="25"
+                            width="25" alt="">
+                        Register</span>
+                </button>
+                <div style="text-align:start;">
+                    <span>Already have an accout?</span> <br>
+                    <a href="{% url 'login' %}" class="text-success">Sign in</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+   
+    function validMobile() {
+        let mobileNumber = document.getElementById("mobile_number").value;
+        if (mobileNumber.length != 10) {
+            alert("invalid mobile number");
+            document.getElementById("registerButton").classList.add("disabled")
+        }
+        else {
+            document.getElementById("registerButton").classList.remove("disabled")
+
+        }
+    }
+</script>
+{% endblock %}

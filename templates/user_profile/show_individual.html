@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block icon %}
+<link rel="icon" type="icon/x-icon" href="{% static 'profiles/user-icon.png' %}">
+{% endblock icon %}
+
+{% block title%}
+{{post.user.first_name|title}}
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'profiles/show-individual.css' %}">
+{% endblock style %}
+
+{% block content %}
+
+{% include 'base/navbar.html' %}
+<center>
+    <div class="row  mt-5  " style="max-width: 25%; height: auto;">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-header bg-light">{{ post.user.first_name|title }} {{ post.user.last_name|title }}</h4>
+            </div>
+            <img class="card-img-top p-1 bg-light" src="{{post.photo.url}}" alt="Card image">
+            <p class="card-footer text-start">{{post.caption}}</p>
+            {% for comment in post.comments_set.all %}
+            <div class="overflow-auto text-start">
+                <div class="card-title card-header mt-0 p-2">
+                    <strong>{{ post.user.first_name|title }}</strong><br>{{ comment.comment}}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</center>
+<center>
+    <div class="btn-group mt-3" role="group">
+
+        <div class="mx-2">
+            <a href="{% url 'profile'%}" class="btn btn-secondary" title="Go back!">Back</a>
+        </div>
+        <div class="mx-2">
+            <a href="{% url 'delete-post' post.id %}" class="btn btn-danger" title="delete post">Delete</a>
+        </div>
+    </div>
+</center>
+{% endblock content %}

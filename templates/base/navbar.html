@@ -1,0 +1,51 @@
+
+{% load static %}
+
+
+<header class="p-2 mb-2 border-bottom bg-success sticky-top">
+	<div class="card  p-0 border-0 nav">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<a href="/" class="d-flex align-items-center  text-dark text-decoration-none">
+				<svg class="bi " width="40" height="32" role="img" aria-label="Bootstrap">
+					<use xlink:href="#bootstrap"></use>
+				</svg>
+			</a>
+
+			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center align-items-center mb-md-0">
+
+				<li><strong><a href="{% url 'dashboard' %}" class="nav-link px-2 link-dark" title="Home Page">
+							<h3>Sociophile 🌎</h3>
+						</a></strong></li>
+				<li><strong><a href="{% url 'profile'  %}" class="nav-link px-2 link-dark ">Profile</a></strong></li>
+
+				<li><strong><a href="#" class="nav-link px-2 link-dark"><span><img
+									src="{% static 'user_profile/notifications.png' %}" alt="" height="30" width="30"
+									class="wobble-hor-bottom"></span></a></strong></li>
+			</ul>
+
+			<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+				<input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+			</form>
+
+			<div class="dropdown text-end p-3">
+				<a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+					aria-expanded="false">
+					<img src="{% static 'user_profile/44948.png' %}" alt="mdo" height="25px" width="25px"
+						class="rounded-circle">
+				</a>
+				<ul class="dropdown-menu text-small">
+
+					<li><a class="dropdown-item" href="{% url 'profile'  %}">Profile</a></li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+

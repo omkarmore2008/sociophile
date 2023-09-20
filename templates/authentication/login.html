@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block icon %}
+<link rel="icon" type="icon/x-icon" href="{% static 'authentication/login-icon.png' %}">
+{% endblock icon %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'authentication/login.css' %}">
+{% endblock style %}
+
+
+{% block title%}
+Login form
+{% endblock %}
+
+
+{% block content%}
+
+{% if success %}
+<div class="alert alert-success alert-dismissible " role="alert">
+    <h4 class="alert-heading">Well done!</h4>
+    <p><strong> Congratulations!</strong></p>
+    <p>Registration is successful, now you can login using your emailid and password sent to your register email address
+    </p>
+
+</div>
+{% endif %}
+
+
+<div class="card  m-auto mt-5 p-3" style="max-width: 35%; border: 0ch;">
+
+    <p class="h3 text-center mb-2 text-success">Login</p>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+
+        <div class="form-floating mb-3 mt-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Id" required>
+            <label for="email">Email id</label>
+        </div>
+
+
+        <div class="form-floating mb-3 mt-3">
+            <input type="password" class="form-control {% if error %} error{% endif %}" id="password" name="password"
+                placeholder="Enter password" required>
+            <label for="password">Password</label>
+        </div>
+
+        {% if error %}
+        <p class="error">Please enter valid credentials!</p>
+        {% endif %}
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-success mb-3  mt-3 ">
+                <span class="badge"><img src="{% static 'authentication/login-icon.png' %}" height="25" width="25"
+                        alt="">
+                    Send otp</span>
+            </button>
+        </div>
+    </form>
+    <form action="{% url 'otp' %}" method="post">
+        {% csrf_token %}
+        <div class="form-floating ">
+            <input type="text" class="form-control" id="user_otp" name="user_otp" placeholder="otp" required>
+            <label for="user_otp">OTP</label>
+            {% if wrong_otp %}
+                <p class="error">Please enter valid credentials!</p>
+            {% endif %}
+            <button type="submit" class="btn btn-success mb-3  mt-3 col-auto" class="text-center">
+                Verify otp
+            </button>
+        </div>
+    </form>
+
+    <div style="text-align:start;">
+        <span>Don't have an accout?</span> <br>
+        <a href="{% url 'register' %}" class="text-success">Sign up</a>
+    </div>
+</div>
+{% endblock %}

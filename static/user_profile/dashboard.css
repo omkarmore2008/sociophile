@@ -1,0 +1,100 @@
+body{
+        background-image: url("./chat-background.jpg");
+       
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      
+.img-body {
+    display: inline;
+    max-width: 200px;
+   
+}
+
+img:hover{
+    box-shadow: 2px 2px 5px black;
+}
+.card{
+    width:auto;
+    margin: auto;
+    border: 3px solid black;
+    max-height: fit-content;
+
+    
+}
+.posted{
+    max-width:300px;
+    height: auto;
+}
+.caption{
+    text-align: left;
+    padding: 5px;
+}
+
+.img-block{
+    border: 3px solid black;
+}
+.wobble-hor-bottom {
+	-webkit-animation: wobble-hor-bottom 0.8s ease-in-out 0s both;
+	        animation: wobble-hor-bottom 0.8s ease-in-out 0s both;
+}
+
+@-webkit-keyframes wobble-hor-bottom {
+    0%,
+    100% {
+      -webkit-transform: translateX(0%);
+              transform: translateX(0%);
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+    }
+    15% {
+      -webkit-transform: translateX(-30px) rotate(-6deg);
+              transform: translateX(-30px) rotate(-6deg);
+    }
+    30% {
+      -webkit-transform: translateX(15px) rotate(6deg);
+              transform: translateX(15px) rotate(6deg);
+    }
+    45% {
+      -webkit-transform: translateX(-15px) rotate(-3.6deg);
+              transform: translateX(-15px) rotate(-3.6deg);
+    }
+    60% {
+      -webkit-transform: translateX(9px) rotate(2.4deg);
+              transform: translateX(9px) rotate(2.4deg);
+    }
+    75% {
+      -webkit-transform: translateX(-6px) rotate(-1.2deg);
+              transform: translateX(-6px) rotate(-1.2deg);
+    }
+  }
+  @keyframes wobble-hor-bottom {
+    0%,
+    100% {
+      -webkit-transform: translateX(0%);
+              transform: translateX(0%);
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%;
+    }
+    15% {
+      -webkit-transform: translateX(-30px) rotate(-6deg);
+              transform: translateX(-30px) rotate(-6deg);
+    }
+    30% {
+      -webkit-transform: translateX(15px) rotate(6deg);
+              transform: translateX(15px) rotate(6deg);
+    }
+    45% {
+      -webkit-transform: translateX(-15px) rotate(-3.6deg);
+              transform: translateX(-15px) rotate(-3.6deg);
+    }
+    60% {
+      -webkit-transform: translateX(9px) rotate(2.4deg);
+              transform: translateX(9px) rotate(2.4deg);
+    }
+    75% {
+      -webkit-transform: translateX(-6px) rotate(-1.2deg);
+              transform: translateX(-6px) rotate(-1.2deg);
+    }
+  }
+  

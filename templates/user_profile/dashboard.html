@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block icon %}
+    <link rel="icon" type="icon/x-icon" href="{% static 'user_profile/user-icon.png' %}">
+{% endblock icon %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'user_profile/dashboard.css' %}">
+{% endblock style %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block content %}
+
+{% include 'base/navbar.html' %}
+
+
+<div class="container g-2 mt-3 img-body ">
+    <div class="row w-25 m-auto">
+        {% for data in post %}
+        <center id="allData">
+            <div class="col-2 card border mb-4">
+                <div class="card-title card-header mt-1 p-2 text-start">
+                    <strong>{{data.user.first_name|title}} {{data.user.last_name|title}}</strong>
+                </div>
+                <div class="mb-2 text-center" style="padding:2px">
+                    <div class="card-body">
+                        <div class="img-block">
+                            <img src="{{ data.photo.url }}" alt="image" class="img-fluid p-2 rounded-3">
+                        </div>
+
+                        <p class="caption">{{data.caption}}</p>
+
+                        <a data-bs-toggle="collapse" href="#collapseExample_{{data.id}}" role="button"
+                            aria-expanded="false" aria-controls="collapseExample" title="Click to comment!">
+                            <span class="badge"><img src="{% static 'user_profile/comment.png' %}" alt=""></span>
+                        </a>
+                        <form action="{% url 'comment' data.id %}" method="post" class="collapse"
+                            id="collapseExample_{{data.id}}">
+                            {% csrf_token %}
+
+                            <div class="form-floating mb-3 mt-3">
+                                <input type="text" class="form-control" id="comment" name="comment"
+                                    placeholder="Enter Comment Here!" required>
+                                <label for="comment">Comment</label>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success mb-1 mt-3 wobble-hor-bottom">
+                                    Post
+                                </button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+                {% for comment in data.comments_set.all|dictsortreversed:"id" %}
+                <div class="overflow-auto text-start">
+                    <div class="card-title card-header mt-0 p-2">
+                        <strong style="text-align:left;">{{ comment.user.first_name|title }}</strong><br>
+                        {{ comment.comment }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </center>
+    </div>
+</div>
+
+{% endblock %}
