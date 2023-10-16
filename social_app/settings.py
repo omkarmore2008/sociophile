@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
+EMAIL_USER = os.environ.get("EMAIL_HOST_USER", "")
+EMAIL_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+print(EMAIL_PASSWORD, EMAIL_USER)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +29,7 @@ SECRET_KEY = 'django-insecure-mn%@&9x1_2m%)9@i0rdo($l#&22odpzs#i7zkv1e7f-l6+z0f7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -82,7 +86,7 @@ WSGI_APPLICATION = 'social_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'social_app',
+        'NAME': 'sociophile',
         'USER': 'postgres',
         'PASSWORD' : '193425',
         'HOST' : 'localhost',
@@ -137,8 +141,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "more.omkar.test@gmail.com"
-EMAIL_HOST_PASSWORD = "pxyftbumokjkymrw"
+EMAIL_HOST_USER = EMAIL_USER
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
